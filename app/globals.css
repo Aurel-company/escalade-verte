@@ -1,26 +1,107 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Hotel brand colors */
+  --color-forest: var(--forest);
+  --color-forest-mid: var(--forest-mid);
+  --color-forest-light: var(--forest-light);
+  --color-forest-pale: var(--forest-pale);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-cream-deeper: var(--cream-deeper);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dark: var(--gold-dark);
+
+  /* Typography */
+  --font-display: var(--font-cormorant);
+  --font-sans: var(--font-jost);
+  --font-body: var(--font-jost);
   --font-mono: var(--font-geist-mono);
+
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.5);
+  --radius-2xl: calc(var(--radius) * 2);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Brand palette */
+  --forest: #102C26;
+  --forest-mid: #1a4238;
+  --forest-light: #2a6355;
+  --forest-pale: #3d7a6a;
+  --cream: #F7E7CE;
+  --cream-dark: #e8d0aa;
+  --cream-deeper: #d4b888;
+  --gold: #C9A96E;
+  --gold-light: #dfc08a;
+  --gold-dark: #a8883a;
+
+  /* System tokens mapped to brand */
+  --background: #faf9f7;
+  --foreground: #102C26;
+  --card: #ffffff;
+  --card-foreground: #102C26;
+  --popover: #ffffff;
+  --popover-foreground: #102C26;
+  --primary: #102C26;
+  --primary-foreground: #F7E7CE;
+  --secondary: #F7E7CE;
+  --secondary-foreground: #102C26;
+  --muted: #f3f0ea;
+  --muted-foreground: #6b6059;
+  --accent: #F7E7CE;
+  --accent-foreground: #102C26;
+  --destructive: #c0392b;
+  --border: #e5dfd4;
+  --input: #e5dfd4;
+  --ring: #C9A96E;
+  --radius: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
 }

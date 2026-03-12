@@ -1,0 +1,361 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "rooms": "Chambres",
+    "services": "Services",
+    "restaurant": "Restaurant",
+    "blog": "Blog",
+    "contact": "Contact",
+    "about": "À propos",
+    "book": "Réserver"
+  },
+  "hero": {
+    "tagline": "Hôtel ★★★ · Yaoundé, Cameroun",
+    "title": "Où le confort rencontre",
+    "titleHighlight": "l'élégance tropicale",
+    "subtitle": "Situé au cœur de Yaoundé, L'Escale Verte vous accueille dans un cadre alliant élégance et modernité. Séjours d'affaires ou de loisirs, nous sommes à votre service.",
+    "cta": "Réserver une chambre",
+    "ctaSecondary": "Découvrir nos services",
+    "scroll": "Découvrir"
+  },
+  "availability": {
+    "arrival": "Date d'arrivée",
+    "departure": "Date de départ",
+    "persons": "Personnes",
+    "person1": "1 personne",
+    "person2": "2 personnes",
+    "person3": "3 personnes",
+    "person4": "4 personnes",
+    "check": "Vérifier disponibilité"
+  },
+  "stats": {
+    "stars": "3★",
+    "starsLabel": "Classement",
+    "rooms": "24",
+    "roomsLabel": "Chambres",
+    "rating": "4.8",
+    "ratingLabel": "Note Google",
+    "conf": "50+",
+    "confLabel": "Places conférence"
+  },
+  "services": {
+    "tagline": "Nos services",
+    "title": "Tout pour votre confort",
+    "subtitle": "L'Escale Verte met à votre disposition des services de qualité pour rendre votre séjour inoubliable.",
+    "restaurant": {
+      "name": "Restaurant",
+      "desc": "Cuisine camerounaise & internationale. Petit-déjeuner sur demande. Ouvert tous les jours."
+    },
+    "pool": {
+      "name": "Piscine",
+      "desc": "Piscine extérieure accessible à tous les résidents. Ouverte 7j/7 de 7h à 21h."
+    },
+    "conference": {
+      "name": "Salle de conférence",
+      "desc": "Salle modulable jusqu'à 50 personnes, entièrement équipée pour vos séminaires et événements."
+    },
+    "wifi": {
+      "name": "WiFi Premium",
+      "desc": "Connexion haut débit dans tout l'établissement, sans supplément."
+    },
+    "reception": {
+      "name": "Réception 24h/24",
+      "desc": "Notre équipe est disponible à toute heure pour répondre à vos besoins."
+    },
+    "parking": {
+      "name": "Parking sécurisé",
+      "desc": "Parking privatif sécurisé pour tous les clients de l'hôtel."
+    }
+  },
+  "rooms": {
+    "tagline": "Nos hébergements",
+    "title": "Chambres & suites",
+    "subtitle": "Deux catégories de chambres pour s'adapter à tous vos séjours, chacune pensée pour votre confort.",
+    "available": "Disponible",
+    "premium": "Premium",
+    "perNight": "/ nuit",
+    "from": "À partir de",
+    "viewMore": "En savoir plus",
+    "book": "Réserver",
+    "standard": {
+      "category": "Catégorie 01",
+      "name": "Chambre Standard",
+      "desc": "Confort essentiel dans un cadre soigné. Idéale pour les séjours courts et les déplacements professionnels.",
+      "features": ["WiFi", "Climatisation", "TV", "Salle de bain"],
+      "price": "35 000 FCFA"
+    },
+    "deluxe": {
+      "category": "Catégorie 02",
+      "name": "Chambre Deluxe",
+      "desc": "Espace généreux, finitions premium et vue sur le jardin tropical. Parfaite pour un séjour d'exception.",
+      "features": ["WiFi", "Minibar", "Vue jardin", "Baignoire"],
+      "price": "55 000 FCFA"
+    }
+  },
+  "testimonials": {
+    "tagline": "Avis clients",
+    "title": "Ce que disent nos hôtes",
+    "subtitle": "Découvrez les expériences de nos clients venus du monde entier.",
+    "items": [
+      {
+        "text": "Un hôtel qui surpasse vraiment les attentes pour un 3 étoiles. La piscine est magnifique et le personnel est aux petits soins. Je recommande vivement pour les séjours business.",
+        "name": "Samuel O.",
+        "origin": "Lagos, Nigeria",
+        "rating": 5,
+        "initial": "S"
+      },
+      {
+        "text": "Séjour de 5 jours pour un séminaire. La salle de conférence est parfaitement équipée. Le restaurant propose de très bons plats locaux. Rapport qualité-prix excellent.",
+        "name": "Marie-Claire F.",
+        "origin": "Paris, France",
+        "rating": 4,
+        "initial": "M"
+      },
+      {
+        "text": "Très bonne surprise ! L'hôtel est propre, le WiFi fonctionne parfaitement et la réception est très réactive. Je reviendrai certainement lors de mes prochains voyages à Yaoundé.",
+        "name": "Jean-Paul N.",
+        "origin": "Douala, Cameroun",
+        "rating": 5,
+        "initial": "J"
+      }
+    ]
+  },
+  "blog": {
+    "tagline": "Actualités",
+    "title": "Blog & conseils",
+    "subtitle": "Découvrez nos articles sur Yaoundé, nos nouvelles offres et conseils pour votre séjour.",
+    "readMore": "Lire l'article",
+    "viewAll": "Voir tous les articles",
+    "posts": [
+      {
+        "date": "15 Juillet 2025",
+        "title": "Top 5 activités à faire à Yaoundé",
+        "excerpt": "Découvrez les incontournables de la capitale camerounaise, à deux pas de l'hôtel — musées, marchés et panoramas.",
+        "emoji": "🌿",
+        "slug": "top-5-activites-yaounde"
+      },
+      {
+        "date": "28 Juin 2025",
+        "title": "Organiser un séminaire réussi",
+        "excerpt": "Notre salle de conférence est disponible pour vos événements professionnels. Découvrez nos formules séminaire.",
+        "emoji": "🤝",
+        "slug": "organiser-seminaire-reussi"
+      },
+      {
+        "date": "10 Juin 2025",
+        "title": "Notre nouveau menu de saison",
+        "excerpt": "Le chef présente ses nouvelles créations inspirées de la gastronomie camerounaise et internationale.",
+        "emoji": "🍽️",
+        "slug": "nouveau-menu-saison"
+      }
+    ]
+  },
+  "cta": {
+    "tagline": "Réservation",
+    "title": "Prêt pour votre séjour ?",
+    "subtitle": "Réservez directement sur notre site — confirmation sous 2h, aucun paiement immédiat requis.",
+    "book": "Réserver maintenant",
+    "whatsapp": "Contacter par WhatsApp"
+  },
+  "footer": {
+    "tagline": "Hôtel ★★★ · Yaoundé, Cameroun",
+    "desc": "L'Escale Verte vous accueille dans un cadre alliant élégance tropicale et modernité au cœur de Yaoundé.",
+    "nav": "Navigation",
+    "contact": "Contact",
+    "address": "Quartier Bastos, Yaoundé, Cameroun",
+    "phone": "+237 699 000 111",
+    "email": "contact@lescaleverte.cm",
+    "rights": "Tous droits réservés.",
+    "legal": "Mentions légales",
+    "privacy": "Politique de confidentialité"
+  },
+  "reservation": {
+    "tagline": "Réservation en ligne",
+    "title": "Votre réservation",
+    "subtitle": "Confirmation sous 2h · Aucun paiement immédiat requis",
+    "name": "Prénom & Nom",
+    "namePlaceholder": "Jean Mbarga",
+    "email": "Email",
+    "emailPlaceholder": "jean@email.com",
+    "phone": "Téléphone / WhatsApp",
+    "phonePlaceholder": "+237 6XX XXX XXX",
+    "roomType": "Type de chambre",
+    "standard": "Chambre Standard — 35 000 FCFA/nuit",
+    "deluxe": "Chambre Deluxe — 55 000 FCFA/nuit",
+    "persons": "Nombre de personnes",
+    "arrival": "Date d'arrivée",
+    "departure": "Date de départ",
+    "special": "Demandes spéciales",
+    "specialPlaceholder": "Chambre non-fumeur, lit bébé, heure d'arrivée tardive…",
+    "newsletter": "Recevoir les offres et promotions de L'Escale Verte",
+    "terms": "J'accepte les conditions générales de réservation",
+    "submit": "Envoyer ma demande de réservation",
+    "sending": "Envoi en cours…",
+    "successTitle": "Réservation reçue !",
+    "successMsg": "Votre demande a bien été enregistrée. Un email de confirmation vous sera envoyé. Notre équipe vous contactera dans les 2 heures.",
+    "errorMsg": "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement.",
+    "required": "Champ requis",
+    "invalidEmail": "Email invalide",
+    "invalidPhone": "Format: +237 6XX XXX XXX",
+    "acceptTerms": "Veuillez accepter les conditions générales",
+    "whatsapp": "Contacter par WhatsApp",
+    "close": "Fermer"
+  },
+  "contact": {
+    "tagline": "Nous contacter",
+    "title": "Parlons de votre séjour",
+    "subtitle": "Notre équipe est disponible pour répondre à toutes vos questions.",
+    "name": "Prénom & Nom",
+    "namePlaceholder": "Jean Mbarga",
+    "email": "Email",
+    "emailPlaceholder": "jean@email.com",
+    "subject": "Sujet",
+    "subjectPlaceholder": "Question sur ma réservation",
+    "message": "Message",
+    "messagePlaceholder": "Votre message…",
+    "submit": "Envoyer le message",
+    "sending": "Envoi en cours…",
+    "successMsg": "Message envoyé ! Nous vous répondrons dans les 24 heures.",
+    "errorMsg": "Erreur lors de l'envoi. Veuillez réessayer.",
+    "address": "Adresse",
+    "addressValue": "Quartier Bastos, Yaoundé, Cameroun",
+    "phone": "Téléphone",
+    "phoneValue": "+237 699 000 111",
+    "emailLabel": "Email",
+    "emailValue": "contact@lescaleverte.cm",
+    "hours": "Réception",
+    "hoursValue": "24h/24 — 7j/7",
+    "whatsappCta": "Discutez avec nous sur WhatsApp"
+  },
+  "about": {
+    "tagline": "Notre histoire",
+    "title": "L'Escale Verte,",
+    "titleHighlight": "un hôtel au cœur de Yaoundé",
+    "story": "Fondé avec la passion d'offrir un hébergement de qualité au cœur de la capitale camerounaise, L'Escale Verte est né de la vision d'un lieu où l'élégance tropicale rencontre le confort moderne. Depuis son ouverture, l'hôtel accueille voyageurs d'affaires, touristes et familles dans une atmosphère chaleureuse et raffinée.",
+    "story2": "Notre équipe dévouée s'engage à rendre chaque séjour mémorable, en alliant l'hospitalité camerounaise authentique aux standards internationaux d'un hôtel 3 étoiles.",
+    "valuesTitle": "Nos valeurs",
+    "values": [
+      {
+        "icon": "🌿",
+        "name": "Excellence",
+        "desc": "Des standards élevés dans chaque détail de votre séjour."
+      },
+      {
+        "icon": "🤝",
+        "name": "Hospitalité",
+        "desc": "L'accueil camerounais authentique au service de chaque hôte."
+      },
+      {
+        "icon": "♻️",
+        "name": "Durabilité",
+        "desc": "Un engagement environnemental pour un tourisme responsable."
+      }
+    ],
+    "teamTitle": "Notre équipe",
+    "teamSubtitle": "Des professionnels passionnés à votre service."
+  },
+  "chambres": {
+    "tagline": "Nos hébergements",
+    "title": "Chambres & suites",
+    "subtitle": "Deux catégories d'hébergement pensées pour votre confort, que vous soyez en voyage d'affaires ou de loisirs.",
+    "standardTitle": "Chambre Standard",
+    "standardDesc": "Notre chambre Standard offre tout le confort essentiel pour un séjour agréable. Climatisée, équipée d'un écran TV et d'une connexion WiFi haut débit, elle est idéale pour les déplacements professionnels courts ou les séjours en transit.",
+    "standardFeatures": [
+      "Lit double (160×200 cm)",
+      "Climatisation réversible",
+      "Télévision écran plat",
+      "WiFi haut débit gratuit",
+      "Salle de bain privée",
+      "Bureau de travail",
+      "Coffre-fort",
+      "Service ménage quotidien"
+    ],
+    "deluxeTitle": "Chambre Deluxe",
+    "deluxeDesc": "La chambre Deluxe offre un espace plus généreux avec des finitions haut de gamme. Profitez d'une vue sur le jardin tropical, d'un minibar garni et d'une salle de bain avec baignoire. Idéale pour les séjours prolongés.",
+    "deluxeFeatures": [
+      "Lit King size (180×200 cm)",
+      "Vue sur le jardin tropical",
+      "Climatisation réversible",
+      "Télévision écran plat 50\"",
+      "WiFi haut débit gratuit",
+      "Minibar",
+      "Baignoire & douche séparées",
+      "Bureau de travail premium",
+      "Coffre-fort",
+      "Service ménage quotidien",
+      "Room service disponible"
+    ],
+    "bookRoom": "Réserver cette chambre",
+    "perNight": "/ nuit",
+    "included": "Inclus dans votre séjour",
+    "includedItems": ["Accès piscine", "WiFi Premium", "Parking sécurisé", "Réception 24h/24"]
+  },
+  "servicesPage": {
+    "tagline": "Services & équipements",
+    "title": "Une expérience complète",
+    "subtitle": "De la piscine au restaurant, en passant par la salle de conférence, L'Escale Verte vous offre tout ce dont vous avez besoin.",
+    "restaurantTitle": "Restaurant",
+    "restaurantDesc": "Notre restaurant propose une cuisine camerounaise et internationale de qualité. Le chef élabore des menus inspirés des saveurs locales et des tendances internationales. Le petit-déjeuner continental ou africain est disponible sur demande de 6h à 10h.",
+    "restaurantFeatures": ["Menu camerounais & international", "Petit-déjeuner sur demande", "Ouvert 7j/7 de 6h à 23h", "Service en chambre disponible"],
+    "poolTitle": "Piscine extérieure",
+    "poolDesc": "Notre piscine extérieure est un véritable havre de paix, entourée de végétation tropicale. Accessible à tous les résidents sans supplément, elle est ouverte tous les jours de 7h à 21h.",
+    "poolFeatures": ["Accès gratuit pour les résidents", "Ouverte 7j/7 de 7h à 21h", "Transats et parasols disponibles", "Service de boissons au bord de la piscine"],
+    "conferenceTitle": "Salle de conférence",
+    "conferenceDesc": "Notre salle de conférence modulable peut accueillir jusqu'à 50 personnes. Entièrement équipée (vidéoprojecteur, écran, système audio, WiFi dédié), elle convient aussi bien aux réunions d'affaires qu'aux séminaires et formations.",
+    "conferenceFeatures": ["Capacité jusqu'à 50 personnes", "Vidéoprojecteur & écran", "Système audio professionnel", "WiFi haut débit dédié", "Pauses café incluses sur devis", "Configuration modulable"],
+    "otherTitle": "Autres services",
+    "services": [
+      { "icon": "📶", "name": "WiFi Premium", "desc": "Connexion haut débit dans tout l'établissement, sans supplément." },
+      { "icon": "🚗", "name": "Parking sécurisé", "desc": "Parking privatif sécurisé, accessible 24h/24." },
+      { "icon": "🛎️", "name": "Réception 24h/24", "desc": "Notre équipe est disponible à toute heure." },
+      { "icon": "🧹", "name": "Ménage quotidien", "desc": "Service de ménage et renouvellement du linge chaque jour." },
+      { "icon": "🚕", "name": "Service navette", "desc": "Transfert aéroport sur demande (supplément)." },
+      { "icon": "💼", "name": "Espace coworking", "desc": "Zone de travail partagée équipée dans le lobby." }
+    ]
+  },
+  "notFound": {
+    "tagline": "Page introuvable",
+    "title": "Cette page n'existe pas",
+    "subtitle": "La page que vous recherchez a peut-être été déplacée, renommée ou n'existe plus. Retournez à l'accueil pour continuer votre navigation.",
+    "backHome": "Retour à l'accueil",
+    "contactUs": "Nous contacter"
+  },
+  "error": {
+    "tagline": "Erreur inattendue",
+    "title": "Une erreur s'est produite",
+    "subtitle": "Quelque chose s'est mal passé lors du chargement de cette page. Vous pouvez réessayer ou retourner à l'accueil.",
+    "code": "Code",
+    "retry": "Réessayer",
+    "backHome": "Retour à l'accueil"
+  },
+  "metadata": {
+    "home": {
+      "title": "L'Escale Verte — Hôtel ★★★ Yaoundé, Cameroun",
+      "description": "Hôtel 3 étoiles au cœur de Yaoundé. Chambres confortables, piscine, restaurant camerounais & international, salle de conférence. Réservez directement."
+    },
+    "rooms": {
+      "title": "Chambres & Suites — L'Escale Verte Yaoundé",
+      "description": "Chambre Standard (35 000 FCFA/nuit) et Chambre Deluxe (55 000 FCFA/nuit). WiFi, climatisation, vue jardin. Réservation en ligne."
+    },
+    "services": {
+      "title": "Services & Équipements — L'Escale Verte",
+      "description": "Restaurant, piscine extérieure, salle de conférence 50 personnes, WiFi premium. Tous les services de L'Escale Verte Yaoundé."
+    },
+    "reservation": {
+      "title": "Réserver — L'Escale Verte Yaoundé",
+      "description": "Réservez votre chambre en ligne. Confirmation sous 2h, aucun paiement immédiat. Hôtel 3 étoiles Yaoundé Cameroun."
+    },
+    "blog": {
+      "title": "Blog & Actualités — L'Escale Verte",
+      "description": "Conseils séjour à Yaoundé, actualités de l'hôtel, gastronomie locale. Le blog de L'Escale Verte."
+    },
+    "contact": {
+      "title": "Contact — L'Escale Verte Yaoundé",
+      "description": "Contactez L'Escale Verte à Yaoundé. Téléphone, email, WhatsApp ou formulaire de contact."
+    },
+    "about": {
+      "title": "À propos — L'Escale Verte Yaoundé",
+      "description": "Découvrez l'histoire et les valeurs de L'Escale Verte, hôtel 3 étoiles au cœur de Yaoundé, Cameroun."
+    }
+  }
+}

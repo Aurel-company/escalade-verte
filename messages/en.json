@@ -1,0 +1,361 @@
+{
+  "nav": {
+    "home": "Home",
+    "rooms": "Rooms",
+    "services": "Services",
+    "restaurant": "Restaurant",
+    "blog": "Blog",
+    "contact": "Contact",
+    "about": "About",
+    "book": "Book Now"
+  },
+  "hero": {
+    "tagline": "★★★ Hotel · Yaoundé, Cameroon",
+    "title": "Where comfort meets",
+    "titleHighlight": "tropical elegance",
+    "subtitle": "Located in the heart of Yaoundé, L'Escale Verte welcomes you in a setting blending elegance and modernity. Business or leisure stays, our team is at your service.",
+    "cta": "Book a room",
+    "ctaSecondary": "Discover our services",
+    "scroll": "Discover"
+  },
+  "availability": {
+    "arrival": "Check-in date",
+    "departure": "Check-out date",
+    "persons": "Guests",
+    "person1": "1 guest",
+    "person2": "2 guests",
+    "person3": "3 guests",
+    "person4": "4 guests",
+    "check": "Check availability"
+  },
+  "stats": {
+    "stars": "3★",
+    "starsLabel": "Rating",
+    "rooms": "24",
+    "roomsLabel": "Rooms",
+    "rating": "4.8",
+    "ratingLabel": "Google Rating",
+    "conf": "50+",
+    "confLabel": "Conference seats"
+  },
+  "services": {
+    "tagline": "Our services",
+    "title": "Everything for your comfort",
+    "subtitle": "L'Escale Verte provides quality services to make your stay unforgettable.",
+    "restaurant": {
+      "name": "Restaurant",
+      "desc": "Cameroonian & international cuisine. Breakfast available on request. Open every day."
+    },
+    "pool": {
+      "name": "Swimming Pool",
+      "desc": "Outdoor pool accessible to all residents. Open 7 days a week, 7am to 9pm."
+    },
+    "conference": {
+      "name": "Conference Room",
+      "desc": "Modular room for up to 50 people, fully equipped for your seminars and events."
+    },
+    "wifi": {
+      "name": "Premium WiFi",
+      "desc": "High-speed connection throughout the property, at no extra charge."
+    },
+    "reception": {
+      "name": "24/7 Reception",
+      "desc": "Our team is available around the clock to meet your needs."
+    },
+    "parking": {
+      "name": "Secure Parking",
+      "desc": "Private secured parking available to all hotel guests."
+    }
+  },
+  "rooms": {
+    "tagline": "Our accommodations",
+    "title": "Rooms & suites",
+    "subtitle": "Two room categories to suit all your stays, each designed for your comfort.",
+    "available": "Available",
+    "premium": "Premium",
+    "perNight": "/ night",
+    "from": "From",
+    "viewMore": "Learn more",
+    "book": "Book",
+    "standard": {
+      "category": "Category 01",
+      "name": "Standard Room",
+      "desc": "Essential comfort in a refined setting. Ideal for short stays and business travel.",
+      "features": ["WiFi", "Air conditioning", "TV", "Private bathroom"],
+      "price": "35,000 FCFA"
+    },
+    "deluxe": {
+      "category": "Category 02",
+      "name": "Deluxe Room",
+      "desc": "Generous space, premium finishes and a view of the tropical garden. Perfect for an exceptional stay.",
+      "features": ["WiFi", "Minibar", "Garden view", "Bathtub"],
+      "price": "55,000 FCFA"
+    }
+  },
+  "testimonials": {
+    "tagline": "Guest reviews",
+    "title": "What our guests say",
+    "subtitle": "Discover experiences from our guests coming from around the world.",
+    "items": [
+      {
+        "text": "A hotel that truly exceeds expectations for a 3-star. The pool is magnificent and the staff is very attentive. Highly recommend for business stays.",
+        "name": "Samuel O.",
+        "origin": "Lagos, Nigeria",
+        "rating": 5,
+        "initial": "S"
+      },
+      {
+        "text": "5-day stay for a seminar. The conference room is perfectly equipped. The restaurant offers great local dishes. Excellent value for money.",
+        "name": "Marie-Claire F.",
+        "origin": "Paris, France",
+        "rating": 4,
+        "initial": "M"
+      },
+      {
+        "text": "Very pleasant surprise! The hotel is clean, WiFi works perfectly and the reception is very responsive. I'll definitely return on my next trips to Yaoundé.",
+        "name": "Jean-Paul N.",
+        "origin": "Douala, Cameroon",
+        "rating": 5,
+        "initial": "J"
+      }
+    ]
+  },
+  "blog": {
+    "tagline": "News",
+    "title": "Blog & tips",
+    "subtitle": "Discover our articles about Yaoundé, our new offers and tips for your stay.",
+    "readMore": "Read article",
+    "viewAll": "View all articles",
+    "posts": [
+      {
+        "date": "July 15, 2025",
+        "title": "Top 5 activities in Yaoundé",
+        "excerpt": "Discover the must-sees of the Cameroonian capital, just steps from the hotel — museums, markets and panoramas.",
+        "emoji": "🌿",
+        "slug": "top-5-activities-yaounde"
+      },
+      {
+        "date": "June 28, 2025",
+        "title": "Organizing a successful seminar",
+        "excerpt": "Our conference room is available for your professional events. Discover our seminar packages.",
+        "emoji": "🤝",
+        "slug": "organizing-successful-seminar"
+      },
+      {
+        "date": "June 10, 2025",
+        "title": "Our new seasonal menu",
+        "excerpt": "The chef presents his new creations inspired by Cameroonian and international gastronomy.",
+        "emoji": "🍽️",
+        "slug": "new-seasonal-menu"
+      }
+    ]
+  },
+  "cta": {
+    "tagline": "Reservation",
+    "title": "Ready for your stay?",
+    "subtitle": "Book directly on our website — confirmation within 2 hours, no immediate payment required.",
+    "book": "Book now",
+    "whatsapp": "Contact via WhatsApp"
+  },
+  "footer": {
+    "tagline": "★★★ Hotel · Yaoundé, Cameroon",
+    "desc": "L'Escale Verte welcomes you in a setting blending tropical elegance and modernity in the heart of Yaoundé.",
+    "nav": "Navigation",
+    "contact": "Contact",
+    "address": "Bastos District, Yaoundé, Cameroon",
+    "phone": "+237 699 000 111",
+    "email": "contact@lescaleverte.cm",
+    "rights": "All rights reserved.",
+    "legal": "Legal notice",
+    "privacy": "Privacy policy"
+  },
+  "reservation": {
+    "tagline": "Online booking",
+    "title": "Your reservation",
+    "subtitle": "Confirmation within 2h · No immediate payment required",
+    "name": "First & Last name",
+    "namePlaceholder": "Jean Mbarga",
+    "email": "Email",
+    "emailPlaceholder": "jean@email.com",
+    "phone": "Phone / WhatsApp",
+    "phonePlaceholder": "+237 6XX XXX XXX",
+    "roomType": "Room type",
+    "standard": "Standard Room — 35,000 FCFA/night",
+    "deluxe": "Deluxe Room — 55,000 FCFA/night",
+    "persons": "Number of guests",
+    "arrival": "Check-in date",
+    "departure": "Check-out date",
+    "special": "Special requests",
+    "specialPlaceholder": "Non-smoking room, crib, late arrival time…",
+    "newsletter": "Receive offers and promotions from L'Escale Verte",
+    "terms": "I accept the general reservation terms",
+    "submit": "Send my reservation request",
+    "sending": "Sending…",
+    "successTitle": "Reservation received!",
+    "successMsg": "Your request has been registered. A confirmation email will be sent to you. Our team will contact you within 2 hours.",
+    "errorMsg": "An error occurred. Please try again or contact us directly.",
+    "required": "Required field",
+    "invalidEmail": "Invalid email",
+    "invalidPhone": "Format: +237 6XX XXX XXX",
+    "acceptTerms": "Please accept the general terms",
+    "whatsapp": "Contact via WhatsApp",
+    "close": "Close"
+  },
+  "contact": {
+    "tagline": "Contact us",
+    "title": "Let's talk about your stay",
+    "subtitle": "Our team is available to answer all your questions.",
+    "name": "First & Last name",
+    "namePlaceholder": "Jean Mbarga",
+    "email": "Email",
+    "emailPlaceholder": "jean@email.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "Question about my booking",
+    "message": "Message",
+    "messagePlaceholder": "Your message…",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "successMsg": "Message sent! We'll reply within 24 hours.",
+    "errorMsg": "Error sending message. Please try again.",
+    "address": "Address",
+    "addressValue": "Bastos District, Yaoundé, Cameroon",
+    "phone": "Phone",
+    "phoneValue": "+237 699 000 111",
+    "emailLabel": "Email",
+    "emailValue": "contact@lescaleverte.cm",
+    "hours": "Reception",
+    "hoursValue": "24/7 — 7 days a week",
+    "whatsappCta": "Chat with us on WhatsApp"
+  },
+  "about": {
+    "tagline": "Our story",
+    "title": "L'Escale Verte,",
+    "titleHighlight": "a hotel in the heart of Yaoundé",
+    "story": "Founded with the passion for offering quality accommodation in the heart of the Cameroonian capital, L'Escale Verte was born from a vision of a place where tropical elegance meets modern comfort. Since its opening, the hotel has welcomed business travelers, tourists and families in a warm and refined atmosphere.",
+    "story2": "Our dedicated team is committed to making every stay memorable, combining authentic Cameroonian hospitality with international 3-star standards.",
+    "valuesTitle": "Our values",
+    "values": [
+      {
+        "icon": "🌿",
+        "name": "Excellence",
+        "desc": "High standards in every detail of your stay."
+      },
+      {
+        "icon": "🤝",
+        "name": "Hospitality",
+        "desc": "Authentic Cameroonian welcome at the service of each guest."
+      },
+      {
+        "icon": "♻️",
+        "name": "Sustainability",
+        "desc": "An environmental commitment for responsible tourism."
+      }
+    ],
+    "teamTitle": "Our team",
+    "teamSubtitle": "Passionate professionals at your service."
+  },
+  "chambres": {
+    "tagline": "Our accommodations",
+    "title": "Rooms & suites",
+    "subtitle": "Two accommodation categories designed for your comfort, whether you're on a business or leisure trip.",
+    "standardTitle": "Standard Room",
+    "standardDesc": "Our Standard room offers all the essential comfort for a pleasant stay. Air-conditioned, equipped with a TV screen and high-speed WiFi connection, it is ideal for short business trips or transit stays.",
+    "standardFeatures": [
+      "Double bed (160×200 cm)",
+      "Reversible air conditioning",
+      "Flat screen TV",
+      "Free high-speed WiFi",
+      "Private bathroom",
+      "Work desk",
+      "Safe",
+      "Daily housekeeping"
+    ],
+    "deluxeTitle": "Deluxe Room",
+    "deluxeDesc": "The Deluxe room offers a more generous space with high-end finishes. Enjoy a view of the tropical garden, a stocked minibar and a bathroom with bathtub. Ideal for extended stays.",
+    "deluxeFeatures": [
+      "King size bed (180×200 cm)",
+      "Tropical garden view",
+      "Reversible air conditioning",
+      "50\" flat screen TV",
+      "Free high-speed WiFi",
+      "Minibar",
+      "Bathtub & separate shower",
+      "Premium work desk",
+      "Safe",
+      "Daily housekeeping",
+      "Room service available"
+    ],
+    "bookRoom": "Book this room",
+    "perNight": "/ night",
+    "included": "Included in your stay",
+    "includedItems": ["Pool access", "Premium WiFi", "Secure parking", "24/7 Reception"]
+  },
+  "servicesPage": {
+    "tagline": "Services & amenities",
+    "title": "A complete experience",
+    "subtitle": "From the pool to the restaurant, through the conference room, L'Escale Verte offers everything you need.",
+    "restaurantTitle": "Restaurant",
+    "restaurantDesc": "Our restaurant offers quality Cameroonian and international cuisine. The chef creates menus inspired by local flavors and international trends. Continental or African breakfast is available on request from 6am to 10am.",
+    "restaurantFeatures": ["Cameroonian & international menu", "Breakfast on request", "Open 7 days, 6am-11pm", "Room service available"],
+    "poolTitle": "Outdoor Pool",
+    "poolDesc": "Our outdoor pool is a true haven of peace, surrounded by tropical vegetation. Accessible to all residents at no extra charge, it is open every day from 7am to 9pm.",
+    "poolFeatures": ["Free access for residents", "Open 7 days, 7am-9pm", "Sun loungers and parasols available", "Poolside drink service"],
+    "conferenceTitle": "Conference Room",
+    "conferenceDesc": "Our modular conference room can accommodate up to 50 people. Fully equipped (projector, screen, audio system, dedicated WiFi), it is suitable for business meetings, seminars and training sessions.",
+    "conferenceFeatures": ["Capacity up to 50 people", "Projector & screen", "Professional audio system", "Dedicated high-speed WiFi", "Coffee breaks included on quote", "Modular configuration"],
+    "otherTitle": "Other services",
+    "services": [
+      { "icon": "📶", "name": "Premium WiFi", "desc": "High-speed connection throughout the property, at no extra charge." },
+      { "icon": "🚗", "name": "Secure Parking", "desc": "Private secured parking, accessible 24/7." },
+      { "icon": "🛎️", "name": "24/7 Reception", "desc": "Our team is available around the clock." },
+      { "icon": "🧹", "name": "Daily Housekeeping", "desc": "Housekeeping and linen renewal every day." },
+      { "icon": "🚕", "name": "Shuttle Service", "desc": "Airport transfer on request (surcharge applies)." },
+      { "icon": "💼", "name": "Coworking Space", "desc": "Equipped shared workspace in the lobby." }
+    ]
+  },
+  "notFound": {
+    "tagline": "Page not found",
+    "title": "This page doesn't exist",
+    "subtitle": "The page you're looking for may have been moved, renamed or no longer exists. Go back to the homepage to continue browsing.",
+    "backHome": "Back to homepage",
+    "contactUs": "Contact us"
+  },
+  "error": {
+    "tagline": "Unexpected error",
+    "title": "Something went wrong",
+    "subtitle": "Something went wrong while loading this page. You can try again or go back to the homepage.",
+    "code": "Code",
+    "retry": "Try again",
+    "backHome": "Back to homepage"
+  },
+  "metadata": {
+    "home": {
+      "title": "L'Escale Verte — ★★★ Hotel Yaoundé, Cameroon",
+      "description": "3-star hotel in the heart of Yaoundé. Comfortable rooms, pool, Cameroonian & international restaurant, conference room. Book directly."
+    },
+    "rooms": {
+      "title": "Rooms & Suites — L'Escale Verte Yaoundé",
+      "description": "Standard Room (35,000 FCFA/night) and Deluxe Room (55,000 FCFA/night). WiFi, air conditioning, garden view. Online booking."
+    },
+    "services": {
+      "title": "Services & Amenities — L'Escale Verte",
+      "description": "Restaurant, outdoor pool, 50-person conference room, premium WiFi. All services at L'Escale Verte Yaoundé."
+    },
+    "reservation": {
+      "title": "Book — L'Escale Verte Yaoundé",
+      "description": "Book your room online. Confirmation within 2 hours, no immediate payment. 3-star hotel Yaoundé Cameroon."
+    },
+    "blog": {
+      "title": "Blog & News — L'Escale Verte",
+      "description": "Stay tips for Yaoundé, hotel news, local gastronomy. The L'Escale Verte blog."
+    },
+    "contact": {
+      "title": "Contact — L'Escale Verte Yaoundé",
+      "description": "Contact L'Escale Verte in Yaoundé. Phone, email, WhatsApp or contact form."
+    },
+    "about": {
+      "title": "About — L'Escale Verte Yaoundé",
+      "description": "Discover the history and values of L'Escale Verte, 3-star hotel in the heart of Yaoundé, Cameroon."
+    }
+  }
+}
