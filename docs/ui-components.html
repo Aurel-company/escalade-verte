@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Escale Verte — Composants UI de référence</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════════ */
+:root {
+  --forest:       #102C26;
+  --forest-mid:   #1a4238;
+  --forest-light: #2a6355;
+  --forest-pale:  #3d7a6a;
+  --cream:        #F7E7CE;
+  --cream-dark:   #e8d0aa;
+  --cream-deeper: #d4b888;
+  --gold:         #C9A96E;
+  --gold-light:   #dfc08a;
+  --gold-dark:    #a8883a;
+  --white:        #ffffff;
+  --gray-50:      #faf9f7;
+  --gray-100:     #f3f0ea;
+  --gray-200:     #e5dfd4;
+  --gray-400:     #9d9285;
+  --gray-600:     #6b6059;
+  --gray-800:     #3d3530;
+  --error:        #c0392b;
+  --success:      #27ae60;
+  --warning:      #e67e22;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  16px;
+  --radius-xl:  24px;
+  --radius-full: 9999px;
+
+  --shadow-sm:  0 1px 3px rgba(16,44,38,.08), 0 1px 2px rgba(16,44,38,.04);
+  --shadow-md:  0 4px 12px rgba(16,44,38,.10), 0 2px 4px rgba(16,44,38,.06);
+  --shadow-lg:  0 12px 32px rgba(16,44,38,.14), 0 4px 8px rgba(16,44,38,.08);
+  --shadow-xl:  0 24px 48px rgba(16,44,38,.18), 0 8px 16px rgba(16,44,38,.10);
+
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--gray-50);
+  color: var(--forest);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════
+   DOC LAYOUT
+═══════════════════════════════════════════ */
+.doc-sidebar {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: 240px;
+  background: var(--forest);
+  overflow-y: auto;
+  z-index: 100;
+  padding: 2rem 0 2rem;
+}
+.doc-sidebar::-webkit-scrollbar { width: 4px; }
+.doc-sidebar::-webkit-scrollbar-thumb { background: var(--forest-light); border-radius: 2px; }
+
+.sidebar-logo {
+  padding: 0 1.5rem 1.5rem;
+  border-bottom: 1px solid rgba(247,231,206,.08);
+  margin-bottom: 1rem;
+}
+.sidebar-logo-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cream);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.sidebar-logo-name span { color: var(--gold); }
+.sidebar-logo-sub {
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(247,231,206,.35);
+  margin-top: .2rem;
+}
+
+.sidebar-section {
+  padding: .3rem 1.5rem .1rem;
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: .8rem;
+}
+.sidebar-link {
+  display: block;
+  padding: .45rem 1.5rem;
+  font-size: .8rem;
+  color: rgba(247,231,206,.55);
+  text-decoration: none;
+  transition: color var(--transition), background var(--transition);
+  font-weight: 400;
+  letter-spacing: .02em;
+}
+.sidebar-link:hover, .sidebar-link.active {
+  color: var(--cream);
+  background: rgba(247,231,206,.05);
+}
+
+.doc-main {
+  margin-left: 240px;
+  min-height: 100vh;
+}
+
+.doc-header {
+  background: var(--forest);
+  padding: 3.5rem 4rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.doc-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 40px,
+    rgba(247,231,206,.02) 40px, rgba(247,231,206,.02) 41px
+  );
+}
+.doc-header-content { position: relative; z-index: 1; }
+.doc-header-tag {
+  font-size: .65rem;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: .8rem;
+}
+.doc-header h1 {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: .5rem;
+}
+.doc-header h1 em { font-style: italic; color: var(--gold); }
+.doc-header-desc {
+  color: rgba(247,231,206,.5);
+  font-size: .9rem;
+  font-weight: 300;
+  max-width: 520px;
+}
+
+.doc-content { padding: 3rem 4rem; }
+
+/* ═══════════════════════════════════════════
+   SECTION STRUCTURE
+═══════════════════════════════════════════ */
+.comp-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 2rem;
+}
+.comp-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: .8rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+.comp-section-num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--gold);
+  opacity: .5;
+  line-height: 1;
+  min-width: 2rem;
+}
+.comp-section-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--forest);
+  line-height: 1;
+}
+.comp-subsection { margin-bottom: 2.5rem; }
+.comp-subsection-title {
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.comp-subsection-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+/* Preview + Code tabs */
+.comp-block {
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 1.2rem;
+}
+.comp-block-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--white);
+}
+.comp-tab {
+  padding: .5rem 1rem;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: color var(--transition);
+  font-family: var(--font-body);
+}
+.comp-tab.active { color: var(--forest); border-bottom: 2px solid var(--gold); }
+.comp-preview {
+  padding: 2rem;
+  background: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.comp-preview.dark-bg { background: var(--forest); }
+.comp-preview.grid-2 { display: grid; grid-template-columns: 1fr 1fr; }
+.comp-preview.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+.comp-code {
+  display: none;
+  background: #0f1c1a;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+.comp-code.visible { display: block; }
+.comp-code pre {
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: #a8d8b0;
+  line-height: 1.6;
+  white-space: pre;
+}
+.comp-code .kw { color: #7ec8a0; }
+.comp-code .str { color: #f7c06e; }
+.comp-code .cm { color: #526b5e; font-style: italic; }
+.comp-code .cls { color: #b8d4f0; }
+.comp-label {
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  display: block;
+  margin-top: .5rem;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════════
+   1. FOUNDATIONS — COLORS
+═══════════════════════════════════════════ */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 1rem;
+  padding: 1.5rem;
+  background: var(--white);
+}
+.color-swatch {
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.color-swatch-body {
+  height: 72px;
+  transition: transform var(--transition);
+  cursor: default;
+}
+.color-swatch:hover .color-swatch-body { transform: scaleY(1.04); }
+.color-swatch-info {
+  padding: .5rem .6rem;
+  background: var(--white);
+  border-top: 1px solid var(--gray-100);
+}
+.color-swatch-name {
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--forest);
+  display: block;
+}
+.color-swatch-hex {
+  font-family: var(--font-mono);
+  font-size: .62rem;
+  color: var(--gray-400);
+  display: block;
+}
+
+/* ═══════════════════════════════════════════
+   2. TYPOGRAPHY
+═══════════════════════════════════════════ */
+.type-specimen {
+  padding: 1.5rem 2rem;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-100);
+}
+.type-specimen:last-child { border-bottom: none; }
+.type-meta {
+  font-family: var(--font-mono);
+  font-size: .65rem;
+  color: var(--gray-400);
+  margin-bottom: .3rem;
+  letter-spacing: .05em;
+}
+
+/* ═══════════════════════════════════════════
+   3. BUTTONS
+═══════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+/* Sizes */
+.btn-sm  { font-size: .68rem; padding: .45rem 1rem; }
+.btn-md  { font-size: .75rem; padding: .7rem 1.6rem; }
+.btn-lg  { font-size: .82rem; padding: .95rem 2.2rem; }
+.btn-xl  { font-size: .88rem; padding: 1.1rem 2.8rem; }
+
+/* Primary */
+.btn-primary {
+  background: var(--forest);
+  color: var(--cream);
+}
+.btn-primary:hover {
+  background: var(--forest-mid);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* Gold */
+.btn-gold {
+  background: var(--gold);
+  color: var(--forest);
+}
+.btn-gold:hover {
+  background: var(--gold-light);
+  box-shadow: 0 4px 16px rgba(201,169,110,.35);
+  transform: translateY(-1px);
+}
+
+/* Ghost */
+.btn-ghost {
+  background: transparent;
+  color: var(--forest);
+  border: 1.5px solid var(--forest);
+}
+.btn-ghost:hover {
+  background: var(--forest);
+  color: var(--cream);
+}
+
+/* Ghost light (for dark bg) */
+.btn-ghost-light {
+  background: transparent;
+  color: var(--cream);
+  border: 1.5px solid rgba(247,231,206,.4);
+}
+.btn-ghost-light:hover {
+  background: rgba(247,231,206,.1);
+  border-color: var(--cream);
+}
+
+/* Cream */
+.btn-cream {
+  background: var(--cream);
+  color: var(--forest);
+}
+.btn-cream:hover {
+  background: var(--cream-dark);
+  transform: translateY(-1px);
+}
+
+/* Text link */
+.btn-text {
+  background: transparent;
+  color: var(--forest);
+  padding-left: 0;
+  padding-right: 0;
+  letter-spacing: .05em;
+  border-bottom: 1px solid transparent;
+}
+.btn-text:hover { border-bottom-color: var(--gold); color: var(--gold); }
+
+/* Disabled */
+.btn-disabled, .btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Icon button */
+.btn-icon {
+  background: var(--gray-100);
+  color: var(--forest);
+  padding: .6rem;
+  border-radius: var(--radius-sm);
+}
+.btn-icon:hover { background: var(--forest); color: var(--cream); }
+
+/* WhatsApp CTA */
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  border-radius: var(--radius-full);
+}
+.btn-whatsapp:hover {
+  background: #1ebe5a;
+  box-shadow: 0 4px 16px rgba(37,211,102,.35);
+  transform: translateY(-1px);
+}
+
+/* ═══════════════════════════════════════════
+   4. BADGES & TAGS
+═══════════════════════════════════════════ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: .25rem .6rem;
+  border-radius: var(--radius-full);
+}
+.badge-forest  { background: var(--forest); color: var(--cream); }
+.badge-gold    { background: var(--gold); color: var(--forest); }
+.badge-cream   { background: var(--cream); color: var(--forest); border: 1px solid var(--cream-dark); }
+.badge-success { background: #d4edda; color: #155724; }
+.badge-warning { background: #fff3cd; color: #856404; }
+.badge-error   { background: #f8d7da; color: #721c24; }
+.badge-outline { background: transparent; color: var(--forest); border: 1px solid var(--forest); }
+
+/* Star rating */
+.stars { color: var(--gold); font-size: 1rem; letter-spacing: .1rem; }
+
+/* ═══════════════════════════════════════════
+   5. FORM ELEMENTS
+═══════════════════════════════════════════ */
+.form-group { display: flex; flex-direction: column; gap: .4rem; width: 100%; }
+.form-label {
+  font-size: .7rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--forest);
+}
+.form-hint { font-size: .75rem; color: var(--gray-400); font-weight: 300; }
+.form-error-msg { font-size: .75rem; color: var(--error); }
+
+.input {
+  width: 100%;
+  padding: .7rem 1rem;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-size: .88rem;
+  font-weight: 300;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  border-radius: var(--radius-sm);
+}
+.input::placeholder { color: var(--gray-400); font-weight: 300; }
+.input:focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(16,44,38,.08);
+}
+.input.error { border-color: var(--error); }
+.input.error:focus { box-shadow: 0 0 0 3px rgba(192,57,43,.08); }
+.input.success { border-color: var(--success); }
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23102C26' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.textarea { resize: vertical; min-height: 100px; }
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  cursor: pointer;
+}
+.checkbox-group input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--forest);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.checkbox-label { font-size: .85rem; font-weight: 300; color: var(--gray-800); }
+
+/* Date range picker display */
+.date-range-display {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--white);
+}
+.date-range-input {
+  flex: 1;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+.date-range-sep {
+  color: var(--gray-400);
+  font-size: .8rem;
+  padding: 0 .3rem;
+  flex-shrink: 0;
+}
+.date-range-display:focus-within {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(16,44,38,.08);
+}
+
+/* ═══════════════════════════════════════════
+   6. CARDS
+═══════════════════════════════════════════ */
+/* Room card */
+.room-card {
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  overflow: hidden;
+  transition: box-shadow var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+.room-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+}
+.room-card-img {
+  height: 180px;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.room-card-img-placeholder {
+  font-size: 3rem;
+  opacity: .3;
+}
+.room-card-badge {
+  position: absolute;
+  top: .8rem; left: .8rem;
+}
+.room-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+.room-card-category {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+}
+.room-card-name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: .6rem;
+}
+.room-card-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem;
+  margin-bottom: .8rem;
+}
+.room-card-feat {
+  font-size: .62rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  border: 1px solid var(--gray-200);
+  padding: .2rem .5rem;
+  color: var(--gray-600);
+}
+.room-card-price {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--forest);
+}
+.room-card-price span {
+  font-family: var(--font-body);
+  font-size: .7rem;
+  color: var(--gray-400);
+  letter-spacing: .05em;
+}
+
+/* Service card */
+.service-card {
+  background: var(--forest);
+  padding: 2rem 1.6rem;
+  border: 1px solid rgba(247,231,206,.08);
+  transition: border-color var(--transition), background var(--transition);
+  cursor: pointer;
+}
+.service-card:hover {
+  border-color: var(--gold);
+  background: var(--forest-mid);
+}
+.service-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+.service-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--cream);
+  margin-bottom: .5rem;
+  font-weight: 400;
+}
+.service-desc {
+  font-size: .82rem;
+  color: rgba(247,231,206,.45);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 1.6rem;
+  position: relative;
+}
+.testimonial-quote {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  color: var(--gold);
+  opacity: .4;
+  line-height: .8;
+  margin-bottom: .5rem;
+}
+.testimonial-text {
+  font-size: .88rem;
+  color: var(--gray-800);
+  line-height: 1.7;
+  font-weight: 300;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+}
+.testimonial-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--forest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.testimonial-name { font-size: .82rem; font-weight: 500; color: var(--forest); }
+.testimonial-origin { font-size: .72rem; color: var(--gray-400); font-weight: 300; }
+
+/* Stat card */
+.stat-card {
+  background: var(--forest);
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  border: 1px solid rgba(247,231,206,.06);
+}
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+.stat-label {
+  font-size: .62rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(247,231,206,.45);
+  display: block;
+  margin-top: .4rem;
+}
+
+/* Blog card */
+.blog-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  overflow: hidden;
+  transition: box-shadow var(--transition);
+  cursor: pointer;
+}
+.blog-card:hover { box-shadow: var(--shadow-md); }
+.blog-card-img {
+  height: 140px;
+  background: linear-gradient(135deg, var(--cream) 0%, var(--cream-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+}
+.blog-card-body { padding: 1rem 1.2rem 1.4rem; }
+.blog-card-date {
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+}
+.blog-card-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--forest);
+  line-height: 1.2;
+  margin-bottom: .5rem;
+}
+.blog-card-excerpt {
+  font-size: .8rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+/* ═══════════════════════════════════════════
+   7. NAVIGATION
+═══════════════════════════════════════════ */
+.nav-demo {
+  background: var(--forest);
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.nav-demo-logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--cream);
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.nav-demo-logo span { color: var(--gold); }
+.nav-demo-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+}
+.nav-demo-link {
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(247,231,206,.6);
+  text-decoration: none;
+  transition: color var(--transition);
+  cursor: pointer;
+}
+.nav-demo-link:hover, .nav-demo-link.active { color: var(--cream); }
+.nav-demo-link.active { color: var(--gold); }
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .78rem;
+  flex-wrap: wrap;
+}
+.breadcrumb-item { color: var(--gray-400); font-weight: 300; }
+.breadcrumb-item.active { color: var(--forest); font-weight: 500; }
+.breadcrumb-sep { color: var(--gray-400); font-size: .6rem; }
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.page-btn {
+  width: 32px; height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  border: 1px solid var(--gray-200);
+  background: var(--white);
+  color: var(--forest);
+  cursor: pointer;
+  transition: all var(--transition);
+  font-family: var(--font-body);
+}
+.page-btn:hover { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+.page-btn.active { background: var(--forest); color: var(--cream); border-color: var(--forest); }
+.page-btn.disabled { opacity: .35; cursor: not-allowed; }
+
+/* Lang switcher */
+.lang-switch {
+  display: flex;
+  border: 1px solid rgba(247,231,206,.2);
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+.lang-btn {
+  padding: .3rem .7rem;
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(247,231,206,.5);
+  cursor: pointer;
+  transition: all var(--transition);
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+}
+.lang-btn.active { background: rgba(247,231,206,.1); color: var(--cream); }
+
+/* ═══════════════════════════════════════════
+   8. MODALS & OVERLAYS
+═══════════════════════════════════════════ */
+.modal-demo {
+  background: rgba(16,44,38,.7);
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 300px;
+  backdrop-filter: blur(4px);
+}
+.modal {
+  background: var(--white);
+  width: 100%;
+  max-width: 440px;
+  box-shadow: var(--shadow-xl);
+}
+.modal-header {
+  padding: 1.5rem 1.8rem 1rem;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--forest);
+  font-weight: 400;
+}
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  font-size: 1.2rem;
+  line-height: 1;
+  padding: .2rem;
+  transition: color var(--transition);
+}
+.modal-close:hover { color: var(--forest); }
+.modal-body { padding: 1.4rem 1.8rem; }
+.modal-footer {
+  padding: 1rem 1.8rem 1.5rem;
+  display: flex;
+  gap: .6rem;
+  justify-content: flex-end;
+  border-top: 1px solid var(--gray-100);
+}
+
+/* Toast notifications */
+.toast-stack {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  padding: 1.5rem;
+  background: var(--gray-100);
+  width: 100%;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .8rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: .83rem;
+  font-weight: 400;
+  border-left: 3px solid transparent;
+  box-shadow: var(--shadow-sm);
+}
+.toast-icon { font-size: 1rem; flex-shrink: 0; }
+.toast-text { flex: 1; }
+.toast-close { color: inherit; opacity: .4; cursor: pointer; font-size: .9rem; background: none; border: none; font-family: var(--font-body); }
+.toast-success { background: #f0faf4; border-left-color: var(--success); color: #155724; }
+.toast-error   { background: #fdf3f2; border-left-color: var(--error);   color: #721c24; }
+.toast-warning { background: #fffbf0; border-left-color: var(--warning); color: #856404; }
+.toast-info    { background: #f0f7ff; border-left-color: #2980b9;        color: #1a5276; }
+
+/* ═══════════════════════════════════════════
+   9. RESERVATION FORM
+═══════════════════════════════════════════ */
+.resa-form-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  width: 100%;
+}
+.resa-form-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--forest);
+  margin-bottom: .3rem;
+  font-weight: 400;
+}
+.resa-form-sub {
+  font-size: .78rem;
+  color: var(--gray-400);
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+.resa-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.resa-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+.resa-row-full { grid-template-columns: 1fr; margin-bottom: 1rem; }
+
+/* Quick availability strip */
+.avail-strip {
+  background: var(--gold);
+  padding: 1.2rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.avail-input {
+  background: rgba(16,44,38,.1);
+  border: 1px solid rgba(16,44,38,.15);
+  padding: .55rem .9rem;
+  color: var(--forest);
+  font-family: var(--font-body);
+  font-size: .82rem;
+  outline: none;
+  min-width: 130px;
+  flex: 1;
+}
+.avail-input::placeholder { color: rgba(16,44,38,.4); }
+.avail-btn {
+  background: var(--forest);
+  color: var(--cream);
+  border: none;
+  padding: .6rem 1.4rem;
+  font-family: var(--font-body);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background var(--transition);
+}
+.avail-btn:hover { background: var(--forest-mid); }
+
+/* ═══════════════════════════════════════════
+   10. MISCELLANEOUS
+═══════════════════════════════════════════ */
+/* Divider */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--gray-200);
+  margin: 1rem 0;
+}
+.divider-gold {
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.divider-with-text {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--gray-400);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.divider-with-text::before, .divider-with-text::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+/* Loader */
+.loader-wrap { display: flex; align-items: center; gap: 1.5rem; }
+.spinner {
+  width: 28px; height: 28px;
+  border: 2px solid var(--gray-200);
+  border-top-color: var(--forest);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* WhatsApp FAB */
+.fab-whatsapp {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,.4);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  font-size: 1.4rem;
+  text-decoration: none;
+}
+.fab-whatsapp:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(37,211,102,.5);
+}
+
+/* Progress steps */
+.steps {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+.step::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: calc(50% + 14px);
+  right: calc(-50% + 14px);
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 0;
+}
+.step:last-child::after { display: none; }
+.step-circle {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gray-200);
+  border: 2px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  position: relative;
+  z-index: 1;
+  transition: all var(--transition);
+}
+.step.done .step-circle  { background: var(--forest); border-color: var(--forest); color: var(--cream); }
+.step.active .step-circle { background: var(--gold); border-color: var(--gold); color: var(--forest); }
+.step.done::after { background: var(--forest); }
+.step-label {
+  font-size: .62rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-top: .4rem;
+  text-align: center;
+}
+.step.done .step-label { color: var(--forest); }
+.step.active .step-label { color: var(--gold); font-weight: 500; }
+
+/* ─── utility ─────────────────────────────────────────── */
+.flex-wrap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.gap-sm { gap: .5rem; }
+.full-w { width: 100%; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<nav class="doc-sidebar">
+  <div class="sidebar-logo">
+    <div class="sidebar-logo-name">L'<span>Escale</span> Verte</div>
+    <div class="sidebar-logo-sub">Composants UI · v1.0</div>
+  </div>
+
+  <div class="sidebar-section">Fondations</div>
+  <a class="sidebar-link active" href="#foundations">Couleurs & Tokens</a>
+  <a class="sidebar-link" href="#typography">Typographie</a>
+
+  <div class="sidebar-section">Actions</div>
+  <a class="sidebar-link" href="#buttons">Boutons</a>
+  <a class="sidebar-link" href="#badges">Badges & Tags</a>
+
+  <div class="sidebar-section">Formulaires</div>
+  <a class="sidebar-link" href="#forms">Inputs & Select</a>
+  <a class="sidebar-link" href="#reservation-form">Formulaire Réservation</a>
+
+  <div class="sidebar-section">Contenu</div>
+  <a class="sidebar-link" href="#cards">Cartes</a>
+  <a class="sidebar-link" href="#navigation">Navigation</a>
+  <a class="sidebar-link" href="#modals">Modales & Alertes</a>
+  <a class="sidebar-link" href="#misc">Divers</a>
+</nav>
+
+<!-- MAIN -->
+<main class="doc-main">
+
+  <header class="doc-header">
+    <div class="doc-header-content">
+      <span class="doc-header-tag">Design System · L'Escale Verte</span>
+      <h1>Composants <em>UI</em><br>de référence</h1>
+      <p class="doc-header-desc">Bibliothèque complète des composants du site web — chaque élément est conforme au design system et prêt à être intégré dans Next.js / Tailwind.</p>
+    </div>
+  </header>
+
+  <div class="doc-content">
+
+    <!-- ══════════════════════════════════
+         1. FOUNDATIONS
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="foundations">
+      <div class="comp-section-header">
+        <span class="comp-section-num">01</span>
+        <h2 class="comp-section-title">Couleurs & Tokens</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Palette principale</div>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#102C26"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Forest</span>
+              <span class="color-swatch-hex">#102C26</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#1a4238"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Forest Mid</span>
+              <span class="color-swatch-hex">#1A4238</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#2a6355"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Forest Light</span>
+              <span class="color-swatch-hex">#2A6355</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#F7E7CE"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Cream</span>
+              <span class="color-swatch-hex">#F7E7CE</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#e8d0aa"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Cream Dark</span>
+              <span class="color-swatch-hex">#E8D0AA</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#C9A96E"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Gold</span>
+              <span class="color-swatch-hex">#C9A96E</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#dfc08a"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Gold Light</span>
+              <span class="color-swatch-hex">#DFC08A</span>
+            </div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#a8883a"></div>
+            <div class="color-swatch-info">
+              <span class="color-swatch-name">Gold Dark</span>
+              <span class="color-swatch-hex">#A8883A</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">États & feedback</div>
+        <div class="color-grid">
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#27ae60"></div>
+            <div class="color-swatch-info"><span class="color-swatch-name">Success</span><span class="color-swatch-hex">#27AE60</span></div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#c0392b"></div>
+            <div class="color-swatch-info"><span class="color-swatch-name">Error</span><span class="color-swatch-hex">#C0392B</span></div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#e67e22"></div>
+            <div class="color-swatch-info"><span class="color-swatch-name">Warning</span><span class="color-swatch-hex">#E67E22</span></div>
+          </div>
+          <div class="color-swatch">
+            <div class="color-swatch-body" style="background:#25D366"></div>
+            <div class="color-swatch-info"><span class="color-swatch-name">WhatsApp</span><span class="color-swatch-hex">#25D366</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Espacements (scale 4px)</div>
+        <div class="comp-preview" style="align-items: flex-end; gap: .8rem;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:4px; height:4px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">4px</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:8px; height:8px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">8px</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:16px; height:16px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">16px</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:24px; height:24px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">24px</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:32px; height:32px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">32px</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:48px; height:48px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">48px</span>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center; gap:.3rem;">
+            <div style="width:64px; height:64px; background:var(--forest); border-radius:1px;"></div>
+            <span class="comp-label">64px</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         2. TYPOGRAPHY
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="typography">
+      <div class="comp-section-header">
+        <span class="comp-section-num">02</span>
+        <h2 class="comp-section-title">Typographie</h2>
+      </div>
+
+      <div class="comp-block">
+        <div class="type-specimen">
+          <div class="type-meta">Cormorant Garamond — Display / Hero title</div>
+          <div style="font-family:var(--font-display); font-size:3.5rem; font-weight:300; color:var(--forest); line-height:1.05;">Bienvenue à<br><em style="color:var(--gold);">L'Escale Verte</em></div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">Cormorant Garamond — Heading 1 · 2.4rem · weight 400</div>
+          <div style="font-family:var(--font-display); font-size:2.4rem; font-weight:400; color:var(--forest); line-height:1.1;">Nos chambres & suites</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">Cormorant Garamond — Heading 2 · 1.8rem · weight 400</div>
+          <div style="font-family:var(--font-display); font-size:1.8rem; font-weight:400; color:var(--forest); line-height:1.15;">Services & équipements</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">Cormorant Garamond — Heading 3 · 1.4rem · italique</div>
+          <div style="font-family:var(--font-display); font-size:1.4rem; font-weight:400; font-style:italic; color:var(--forest);">Un cadre exceptionnel</div>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">Jost — Body regular · 1rem · weight 300</div>
+          <p style="font-family:var(--font-body); font-size:1rem; font-weight:300; color:#374151; line-height:1.7; max-width:520px;">Situé au cœur de Yaoundé, L'Escale Verte vous accueille dans un cadre alliant élégance tropicale et modernité. Que vous soyez en déplacement professionnel ou en séjour de loisirs, notre équipe est à votre service.</p>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">Jost — UI label · 0.7rem · uppercase · letter-spacing</div>
+          <span style="font-family:var(--font-body); font-size:.7rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--gold);">Nos hébergements</span>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">Jost — Caption · 0.75rem · weight 300</div>
+          <span style="font-family:var(--font-body); font-size:.75rem; font-weight:300; color:#6b6059;">À partir de 35 000 FCFA / nuit · Petit-déjeuner inclus sur demande</span>
+        </div>
+        <div class="type-specimen">
+          <div class="type-meta">JetBrains Mono — Code / prix technique</div>
+          <span style="font-family:var(--font-mono); font-size:.85rem; color:var(--forest);">N8N_WEBHOOK_URL=https://n8n.lescaleverte.cm/webhook/reservation</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         3. BUTTONS
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="buttons">
+      <div class="comp-section-header">
+        <span class="comp-section-num">03</span>
+        <h2 class="comp-section-title">Boutons</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Variantes principales</div>
+        <div class="comp-preview">
+          <button class="btn btn-primary btn-md">Réserver</button>
+          <button class="btn btn-gold btn-md">Voir les tarifs</button>
+          <button class="btn btn-ghost btn-md">En savoir plus</button>
+          <button class="btn btn-cream btn-md">Découvrir</button>
+          <button class="btn btn-text btn-md">Voir tout →</button>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Variantes sur fond sombre</div>
+        <div class="comp-preview dark-bg">
+          <button class="btn btn-gold btn-md">Réserver une chambre</button>
+          <button class="btn btn-ghost-light btn-md">Découvrir nos services</button>
+          <button class="btn btn-cream btn-md">Voir les tarifs</button>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Tailles</div>
+        <div class="comp-preview" style="align-items:center;">
+          <button class="btn btn-primary btn-sm">Small</button>
+          <button class="btn btn-primary btn-md">Medium</button>
+          <button class="btn btn-primary btn-lg">Large</button>
+          <button class="btn btn-primary btn-xl">X-Large</button>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">États & spéciaux</div>
+        <div class="comp-preview" style="align-items:center;">
+          <button class="btn btn-primary btn-md btn-disabled">Désactivé</button>
+          <button class="btn btn-whatsapp btn-md">💬 WhatsApp</button>
+          <a class="fab-whatsapp" title="WhatsApp">💬</a>
+          <button class="btn btn-icon btn-md">🔍</button>
+          <button class="btn btn-icon btn-md">♡</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         4. BADGES
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="badges">
+      <div class="comp-section-header">
+        <span class="comp-section-num">04</span>
+        <h2 class="comp-section-title">Badges & Tags</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Badges</div>
+        <div class="comp-preview">
+          <span class="badge badge-forest">★★★ Hôtel</span>
+          <span class="badge badge-gold">Nouveau</span>
+          <span class="badge badge-cream">Disponible</span>
+          <span class="badge badge-success">Confirmé</span>
+          <span class="badge badge-warning">En attente</span>
+          <span class="badge badge-error">Complet</span>
+          <span class="badge badge-outline">Bilingue FR/EN</span>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Note étoiles</div>
+        <div class="comp-preview">
+          <div>
+            <div class="stars">★★★★★</div>
+            <span class="comp-label">5 étoiles · 42 avis</span>
+          </div>
+          <div>
+            <div class="stars">★★★★<span style="color:var(--gray-200)">★</span></div>
+            <span class="comp-label">4 étoiles · 18 avis</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         5. FORMS
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="forms">
+      <div class="comp-section-header">
+        <span class="comp-section-num">05</span>
+        <h2 class="comp-section-title">Formulaires</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">États des inputs</div>
+        <div class="comp-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+          <div class="form-group">
+            <label class="form-label">Nom complet</label>
+            <input class="input" type="text" placeholder="Jean Mbarga">
+            <span class="form-hint">Entrez votre nom tel qu'il apparaît sur votre pièce d'identité</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="input success" type="email" value="jean@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Téléphone / WhatsApp</label>
+            <input class="input error" type="tel" value="+237 69" placeholder="+237 6XX XXX XXX">
+            <span class="form-error-msg">Numéro invalide — format attendu : +237 6XX XXX XXX</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Type de chambre</label>
+            <select class="input select">
+              <option value="">Choisir une option</option>
+              <option value="standard">Chambre Standard — 35 000 FCFA/nuit</option>
+              <option selected value="deluxe">Chambre Deluxe — 55 000 FCFA/nuit</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nombre de personnes</label>
+            <input class="input" type="number" min="1" max="4" value="2">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Demandes spéciales</label>
+            <textarea class="input textarea" placeholder="Chambre non-fumeur, lit bébé, arrivée tardive…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Date range & options</div>
+        <div class="comp-preview" style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;">
+          <div class="form-group">
+            <label class="form-label">Période de séjour</label>
+            <div class="date-range-display">
+              <input class="input date-range-input" type="date" value="2025-07-15">
+              <span class="date-range-sep">→</span>
+              <input class="input date-range-input" type="date" value="2025-07-18">
+            </div>
+          </div>
+          <div class="form-group" style="justify-content:flex-end;">
+            <label class="form-label" style="opacity:0">.</label>
+            <div style="display:flex; flex-direction:column; gap:.6rem; padding:.3rem 0;">
+              <label class="checkbox-group">
+                <input type="checkbox" checked>
+                <span class="checkbox-label">Petit-déjeuner inclus</span>
+              </label>
+              <label class="checkbox-group">
+                <input type="checkbox">
+                <span class="checkbox-label">Je souhaite recevoir les offres promotionnelles</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         6. CARDS
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="cards">
+      <div class="comp-section-header">
+        <span class="comp-section-num">06</span>
+        <h2 class="comp-section-title">Cartes</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Cartes chambres</div>
+        <div class="comp-preview grid-2">
+          <div class="room-card">
+            <div class="room-card-img">
+              <span class="room-card-img-placeholder">🛏</span>
+              <span class="room-card-badge"><span class="badge badge-cream">Disponible</span></span>
+            </div>
+            <div class="room-card-body">
+              <span class="room-card-category">Catégorie 01</span>
+              <div class="room-card-name">Chambre Standard</div>
+              <div class="room-card-features">
+                <span class="room-card-feat">WiFi</span>
+                <span class="room-card-feat">Clim</span>
+                <span class="room-card-feat">TV</span>
+              </div>
+              <p style="font-size:.82rem; color:var(--gray-600); line-height:1.5; font-weight:300; margin-bottom:.8rem;">Confort essentiel dans un cadre soigné. Idéale pour les séjours courts.</p>
+              <div class="room-card-price">35 000 FCFA <span>/ nuit</span></div>
+            </div>
+          </div>
+          <div class="room-card">
+            <div class="room-card-img" style="background:linear-gradient(135deg, var(--forest-mid) 0%, var(--forest-light) 100%);">
+              <span class="room-card-img-placeholder">🛏</span>
+              <span class="room-card-badge"><span class="badge badge-gold">Premium</span></span>
+            </div>
+            <div class="room-card-body">
+              <span class="room-card-category">Catégorie 02</span>
+              <div class="room-card-name">Chambre Deluxe</div>
+              <div class="room-card-features">
+                <span class="room-card-feat">WiFi</span>
+                <span class="room-card-feat">Minibar</span>
+                <span class="room-card-feat">Vue jardin</span>
+              </div>
+              <p style="font-size:.82rem; color:var(--gray-600); line-height:1.5; font-weight:300; margin-bottom:.8rem;">Espace généreux, finitions premium et vue sur le jardin tropical.</p>
+              <div class="room-card-price">55 000 FCFA <span>/ nuit</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Cartes services</div>
+        <div class="comp-preview dark-bg grid-3">
+          <div class="service-card">
+            <span class="service-icon">🍽️</span>
+            <div class="service-name">Restaurant</div>
+            <p class="service-desc">Cuisine camerounaise & internationale. Petit-déjeuner sur demande.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">🏊</span>
+            <div class="service-name">Piscine</div>
+            <p class="service-desc">Accès inclus pour tous les résidents. Ouverte 7j/7.</p>
+          </div>
+          <div class="service-card">
+            <span class="service-icon">💼</span>
+            <div class="service-name">Conférence</div>
+            <p class="service-desc">Salle modulable jusqu'à 50 personnes, entièrement équipée.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Cartes avis clients</div>
+        <div class="comp-preview grid-2">
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Un hôtel qui surpasse vraiment les attentes pour un 3 étoiles. La piscine est magnifique et le personnel est aux petits soins. Je recommande vivement pour les séjours business.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">S</div>
+              <div>
+                <div class="testimonial-name">Samuel O.</div>
+                <div class="testimonial-origin">Lagos, Nigeria · <span class="stars" style="font-size:.8rem;">★★★★★</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Séjour de 5 jours pour un séminaire. La salle de conférence est parfaitement équipée. Le restaurant propose de très bons plats locaux. Rapport qualité-prix excellent.</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">M</div>
+              <div>
+                <div class="testimonial-name">Marie-Claire F.</div>
+                <div class="testimonial-origin">Paris, France · <span class="stars" style="font-size:.8rem;">★★★★<span style="color:var(--gray-200)">★</span></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Cartes stats & blog</div>
+        <div class="comp-preview dark-bg" style="gap:.6rem;">
+          <div class="stat-card" style="flex:1; min-width:120px;">
+            <span class="stat-num">3★</span>
+            <span class="stat-label">Classement</span>
+          </div>
+          <div class="stat-card" style="flex:1; min-width:120px;">
+            <span class="stat-num">24</span>
+            <span class="stat-label">Chambres</span>
+          </div>
+          <div class="stat-card" style="flex:1; min-width:120px;">
+            <span class="stat-num">4.8</span>
+            <span class="stat-label">Note Google</span>
+          </div>
+          <div class="stat-card" style="flex:1; min-width:120px;">
+            <span class="stat-num">+50</span>
+            <span class="stat-label">Places conf.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Cartes blog</div>
+        <div class="comp-preview grid-3">
+          <div class="blog-card">
+            <div class="blog-card-img">🌿</div>
+            <div class="blog-card-body">
+              <div class="blog-card-date">15 Juillet 2025</div>
+              <div class="blog-card-title">Top 5 activités à faire à Yaoundé</div>
+              <p class="blog-card-excerpt">Découvrez les incontournables de la capitale camerounaise, à deux pas de l'hôtel...</p>
+            </div>
+          </div>
+          <div class="blog-card">
+            <div class="blog-card-img">🤝</div>
+            <div class="blog-card-body">
+              <div class="blog-card-date">28 Juin 2025</div>
+              <div class="blog-card-title">Organiser un séminaire réussi</div>
+              <p class="blog-card-excerpt">Notre salle de conférence est disponible pour vos événements professionnels...</p>
+            </div>
+          </div>
+          <div class="blog-card">
+            <div class="blog-card-img">🍽️</div>
+            <div class="blog-card-body">
+              <div class="blog-card-date">10 Juin 2025</div>
+              <div class="blog-card-title">Notre nouveau menu de saison</div>
+              <p class="blog-card-excerpt">Le chef présente ses nouvelles créations inspirées de la gastronomie locale...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         7. NAVIGATION
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="navigation">
+      <div class="comp-section-header">
+        <span class="comp-section-num">07</span>
+        <h2 class="comp-section-title">Navigation</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Barre de navigation principale</div>
+        <div class="comp-block">
+          <div class="comp-preview" style="padding:0;">
+            <nav class="nav-demo full-w">
+              <div class="nav-demo-logo">L'<span>Escale</span> Verte</div>
+              <ul class="nav-demo-links">
+                <li><a class="nav-demo-link active">Accueil</a></li>
+                <li><a class="nav-demo-link">Chambres</a></li>
+                <li><a class="nav-demo-link">Services</a></li>
+                <li><a class="nav-demo-link">Restaurant</a></li>
+              </ul>
+              <div style="display:flex; align-items:center; gap:.8rem;">
+                <div class="lang-switch">
+                  <button class="lang-btn active">FR</button>
+                  <button class="lang-btn">EN</button>
+                </div>
+                <button class="btn btn-gold btn-sm">Réserver</button>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Fil d'Ariane & Pagination</div>
+        <div class="comp-preview" style="flex-direction:column; gap:1.5rem; align-items:flex-start;">
+          <nav class="breadcrumb">
+            <span class="breadcrumb-item">Accueil</span>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-item">Chambres</span>
+            <span class="breadcrumb-sep">›</span>
+            <span class="breadcrumb-item active">Chambre Deluxe</span>
+          </nav>
+          <nav class="pagination">
+            <button class="page-btn disabled">‹</button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">›</button>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         8. RESERVATION FORM
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="reservation-form">
+      <div class="comp-section-header">
+        <span class="comp-section-num">08</span>
+        <h2 class="comp-section-title">Formulaire Réservation</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Strip de disponibilité rapide (Hero)</div>
+        <div class="comp-block">
+          <div class="comp-preview" style="padding:0;">
+            <div class="avail-strip full-w">
+              <input class="avail-input" type="date" placeholder="Arrivée">
+              <input class="avail-input" type="date" placeholder="Départ">
+              <select class="avail-input" style="min-width:160px;">
+                <option>1 personne</option>
+                <option selected>2 personnes</option>
+                <option>3 personnes</option>
+              </select>
+              <button class="avail-btn">Vérifier disponibilité</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Formulaire complet de réservation</div>
+        <div class="comp-preview" style="display:block;">
+          <div class="resa-form-card">
+            <div class="resa-form-title">Votre réservation</div>
+            <div class="resa-form-sub">Confirmation sous 2h · Aucun paiement immédiat requis</div>
+
+            <div class="resa-row">
+              <div class="form-group">
+                <label class="form-label">Prénom & Nom</label>
+                <input class="input" type="text" placeholder="Jean Mbarga">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email</label>
+                <input class="input" type="email" placeholder="jean@email.com">
+              </div>
+            </div>
+            <div class="resa-row resa-row-3">
+              <div class="form-group">
+                <label class="form-label">Téléphone</label>
+                <input class="input" type="tel" placeholder="+237 6XX XXX XXX">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Type de chambre</label>
+                <select class="input select">
+                  <option>Standard — 35 000 FCFA</option>
+                  <option>Deluxe — 55 000 FCFA</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Personnes</label>
+                <input class="input" type="number" value="2" min="1" max="4">
+              </div>
+            </div>
+            <div class="resa-row">
+              <div class="form-group">
+                <label class="form-label">Date d'arrivée</label>
+                <input class="input" type="date">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Date de départ</label>
+                <input class="input" type="date">
+              </div>
+            </div>
+            <div class="resa-row-full">
+              <div class="form-group">
+                <label class="form-label">Demandes spéciales</label>
+                <textarea class="input textarea" placeholder="Chambre non-fumeur, lit bébé, heure d'arrivée tardive…" style="min-height:80px;"></textarea>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:.6rem; margin-bottom:1.4rem;">
+              <label class="checkbox-group">
+                <input type="checkbox">
+                <span class="checkbox-label">Recevoir les offres et promotions de L'Escale Verte</span>
+              </label>
+              <label class="checkbox-group">
+                <input type="checkbox" checked>
+                <span class="checkbox-label">J'accepte les conditions générales de réservation</span>
+              </label>
+            </div>
+            <button class="btn btn-primary btn-lg full-w" style="justify-content:center;">Envoyer ma demande de réservation</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Étapes de progression (multi-step)</div>
+        <div class="comp-preview" style="padding: 2rem 3rem;">
+          <div class="steps full-w">
+            <div class="step done">
+              <div class="step-circle">✓</div>
+              <span class="step-label">Dates</span>
+            </div>
+            <div class="step done">
+              <div class="step-circle">✓</div>
+              <span class="step-label">Chambre</span>
+            </div>
+            <div class="step active">
+              <div class="step-circle">3</div>
+              <span class="step-label">Coordonnées</span>
+            </div>
+            <div class="step">
+              <div class="step-circle">4</div>
+              <span class="step-label">Confirmation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         9. MODALS & ALERTS
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="modals">
+      <div class="comp-section-header">
+        <span class="comp-section-num">09</span>
+        <h2 class="comp-section-title">Modales & Alertes</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Modale de confirmation</div>
+        <div class="comp-block">
+          <div class="comp-preview" style="padding:0;">
+            <div class="modal-demo">
+              <div class="modal">
+                <div class="modal-header">
+                  <div class="modal-title">Réservation reçue ✓</div>
+                  <button class="modal-close">✕</button>
+                </div>
+                <div class="modal-body">
+                  <p style="font-size:.88rem; color:var(--gray-600); line-height:1.6; font-weight:300; margin-bottom:1rem;">Votre demande a bien été enregistrée. Un email de confirmation vous a été envoyé à <strong>jean@email.com</strong>. Notre équipe vous contactera dans les 2 heures.</p>
+                  <div style="background:var(--gray-50); border:1px solid var(--gray-200); padding:1rem; font-size:.82rem; line-height:1.6; font-weight:300; color:var(--forest);">
+                    <div style="margin-bottom:.3rem;"><strong>Chambre Deluxe</strong></div>
+                    <div>Arrivée : 15 Juillet 2025 · Départ : 18 Juillet 2025</div>
+                    <div>2 personnes · 3 nuits</div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-ghost btn-sm">Fermer</button>
+                  <button class="btn btn-primary btn-sm">💬 Contacter par WhatsApp</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Notifications toast</div>
+        <div class="comp-block">
+          <div class="comp-preview" style="padding:0;">
+            <div class="toast-stack">
+              <div class="toast toast-success">
+                <span class="toast-icon">✓</span>
+                <span class="toast-text">Votre réservation a été confirmée. Un email vous a été envoyé.</span>
+                <button class="toast-close">✕</button>
+              </div>
+              <div class="toast toast-error">
+                <span class="toast-icon">✕</span>
+                <span class="toast-text">Erreur lors de l'envoi du formulaire. Veuillez réessayer.</span>
+                <button class="toast-close">✕</button>
+              </div>
+              <div class="toast toast-warning">
+                <span class="toast-icon">⚠</span>
+                <span class="toast-text">La chambre Deluxe n'est disponible que 2 nuits sur votre période.</span>
+                <button class="toast-close">✕</button>
+              </div>
+              <div class="toast toast-info">
+                <span class="toast-icon">ℹ</span>
+                <span class="toast-text">Check-in à partir de 14h00 · Check-out avant 12h00</span>
+                <button class="toast-close">✕</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         10. MISCELLANEOUS
+    ══════════════════════════════════ -->
+    <section class="comp-section" id="misc">
+      <div class="comp-section-header">
+        <span class="comp-section-num">10</span>
+        <h2 class="comp-section-title">Divers</h2>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Séparateurs</div>
+        <div class="comp-preview" style="flex-direction:column; gap:1.5rem;">
+          <div class="divider full-w"></div>
+          <div class="divider-gold full-w"></div>
+          <div class="divider-with-text full-w">ou</div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Loaders & skeletons</div>
+        <div class="comp-preview">
+          <div class="loader-wrap">
+            <div class="spinner"></div>
+            <span style="font-size:.82rem; color:var(--gray-400); font-weight:300;">Vérification de la disponibilité…</span>
+          </div>
+        </div>
+        <div class="comp-preview" style="flex-direction:column; gap:.6rem;">
+          <div class="skeleton" style="height:20px; width:60%;"></div>
+          <div class="skeleton" style="height:14px; width:80%;"></div>
+          <div class="skeleton" style="height:14px; width:45%;"></div>
+        </div>
+      </div>
+
+      <div class="comp-subsection">
+        <div class="comp-subsection-title">Bouton flottant WhatsApp</div>
+        <div class="comp-preview">
+          <div style="position:relative; width:80px; height:80px; display:flex; align-items:center; justify-content:center;">
+            <a class="fab-whatsapp">💬</a>
+          </div>
+          <div style="font-size:.82rem; color:var(--gray-400); font-weight:300;">
+            Affiché en position <code style="font-family:var(--font-mono); background:var(--gray-100); padding:.1rem .3rem; font-size:.78rem;">fixed bottom-6 right-6</code> sur toutes les pages
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /.doc-content -->
+</main>
+
+<script>
+  // Sidebar active link on scroll
+  const sections = document.querySelectorAll('.comp-section');
+  const links = document.querySelectorAll('.sidebar-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.sidebar-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => observer.observe(s));
+
+  // Lang switcher toggle
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.lang-switch').querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Tab preview/code toggle
+  document.querySelectorAll('.comp-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const block = tab.closest('.comp-block');
+      block.querySelectorAll('.comp-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      block.querySelectorAll('.comp-preview, .comp-code').forEach(p => p.classList.remove('visible'));
+      block.querySelector(tab.dataset.target).classList.add('visible');
+    });
+  });
+</script>
+</body>
+</html>
